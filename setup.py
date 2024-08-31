@@ -1,7 +1,5 @@
-from setuptools import setup
-from Cython.Build import cythonize
+from setuptools import Extension, setup
 
 setup(
-    name='Hello world app',
-    ext_modules=cythonize("hello.pyx"),
+    ext_modules = [Extension("hello", ["hello.c"])]
 )
