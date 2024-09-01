@@ -74,7 +74,7 @@ jobs:
           path: dist
           merge-multiple: true
 
-      - name: Publish to PyPI
+      - name: Publish to TestPyPI  # In real package, use PyPI instead.
         run: |
           pip install twine
-          twine upload dist/* -u __token__ -p ${{ secrets.pypi_token }}
+          twine upload --repository testpypi dist/* -u __token__ -p ${{ secrets.testpypi_token }}
