@@ -24,7 +24,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: cibw-wheels-${{ matrix.os }}-${{ strategy.job-index }}
+          name: wheels-${{ matrix.os }}-${{ strategy.job-index }}
           path: ./wheelhouse/*.whl
 
   build_sdist:
@@ -35,12 +35,13 @@ jobs:
 
       - name: Build sdist
         run: |
+          pip install --upgrade setuptools
           pip install numpy cython
           python setup.py sdist
 
       - uses: actions/upload-artifact@v4
         with:
-          name: cibw-sdist
+          name: sdist
           path: dist/*.tar.gz
 
   publish:
@@ -52,7 +53,6 @@ jobs:
       - name: Download wheels and sdist
         uses: actions/download-artifact@v4
         with:
-          pattern: cibw-*
           path: dist
           merge-multiple: true
 
