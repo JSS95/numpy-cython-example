@@ -1,6 +1,7 @@
 name: CD
 
 on:
+  pull_request:
   release:
     types: [published]
 
@@ -21,7 +22,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: wheels-${{ matrix.os }}-${{ strategy.job-index }}
+          name: cibw-wheels-${{ matrix.os }}-${{ strategy.job-index }}
           path: ./wheelhouse/*.whl
 
   build_sdist:
@@ -37,21 +38,24 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: sdist
+          name: cibw-sdist
           path: dist/*.tar.gz
 
   publish:
     needs: [build_wheels, build_sdist]
     runs-on: ubuntu-latest
+    if: github.event_name == 'release' && github.event.action == 'published'
 
     steps:
       - name: Download wheels and sdist
         uses: actions/download-artifact@v4
         with:
+          pattern: cibw-*
           path: dist
           merge-multiple: true
 
       - name: publish to PyPI
-        run: |
-          pip install twine
-          twine upload --repository testpypi dist/* -u __token__ -p ${{ secrets.testpypi_token }}
+        uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          password: ${{ secrets.testpypi_token }}
+          repository-url: https://test.pypi.org/legacy/
