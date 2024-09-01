@@ -13,3 +13,6 @@ dependencies = [
 test = [
     "pytest",
 ]
+
+[tool.cibuildwheel]
+skip = "cp36-* cp37-* cp38-* pp* *_ppc64le *_i686 *_s390x"
