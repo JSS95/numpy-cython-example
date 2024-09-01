@@ -1,7 +1,15 @@
 [build-system]
-requires = ["setuptools"]
+requires = ["setuptools", "numpy", "cython"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "numpy-cython-example"
 version = "0.0.0"
+dependencies = [
+  "numpy",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest",
+]

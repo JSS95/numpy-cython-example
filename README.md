@@ -5,9 +5,8 @@ Example for:
 2. Compile in diffeernt architectures using Github Action.
 3. Publish wheel to PyPI.
 
-## Building
+## Installing
 
 ```
-pip install numpy
-python setup.py build_ext --inplace
+pip install .
 ```

@@ -1,6 +1,7 @@
 import numpy as np
 
 cimport numpy as cnp
+cnp.import_array()
 
 
 def sum_array(cnp.ndarray[cnp.double_t, ndim=1] arr):
