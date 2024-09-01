@@ -98,6 +98,6 @@ jobs:
           python-version: ${{ matrix.python }}
 
       - name: install package
-        run: pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ --pre numpy-cython-example
+        run: pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ --pre numpy-cython-example[test]
 
       - run: pytest
