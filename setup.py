@@ -1,5 +1,5 @@
-from setuptools import Extension, setup
+import numpy
+from Cython.Build import cythonize
+from setuptools import setup
 
-setup(
-    ext_modules = [Extension("hello", ["hello.c"])]
-)
+setup(ext_modules=cythonize("numpy_cython_sum.pyx"), include_dirs=[numpy.get_include()])

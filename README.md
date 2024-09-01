@@ -8,11 +8,6 @@ Example for:
 ## Building
 
 ```
-cython hello.pyx
-```
-
-## Installing
-
-```
-pip install .
+pip install numpy
+python setup.py build_ext --inplace
 ```
