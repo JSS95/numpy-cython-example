@@ -45,8 +45,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-
       - name: Download wheels and sdist
         uses: actions/download-artifact@v4
         with:
