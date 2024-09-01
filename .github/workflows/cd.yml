@@ -28,7 +28,7 @@ jobs:
           path: ./wheelhouse/*.whl
 
   build_sdist:
-    name: Build source distribution
+    name: Build sdist
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -44,6 +44,24 @@ jobs:
           name: sdist
           path: dist/*.tar.gz
 
+  twine_check:
+    name: Check if dists can be published
+    needs: [build_wheels, build_sdist]
+    runs-on: ubuntu-latest
+    if: github.event_name != 'release'
+
+    steps:
+      - name: Download wheels and sdist
+        uses: actions/download-artifact@v4
+        with:
+          path: dist
+          merge-multiple: true
+
+      - name: Check with twine
+        run: |
+          pip install twine
+          twine check dist/* --strict
+
   publish:
     needs: [build_wheels, build_sdist]
     runs-on: ubuntu-latest
@@ -56,8 +74,7 @@ jobs:
           path: dist
           merge-multiple: true
 
-      - name: publish to PyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
-        with:
-          password: ${{ secrets.testpypi_token }}
-          repository-url: https://test.pypi.org/legacy/
+      - name: Publish to PyPI
+        run: |
+          pip install twine
+          twine upload dist/* -u __token__ -p ${{ secrets.pypi_token }}
