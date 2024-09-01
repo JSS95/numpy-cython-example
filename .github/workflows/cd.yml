@@ -88,6 +88,7 @@ jobs:
       matrix:
         os : [ubuntu-latest, windows-latest, macos-latest]
         python: ["3.12"]
+        pip-option: ["", "--no-binary=numpy-cython-example"]
 
     steps:
       - uses: actions/checkout@v4
@@ -98,6 +99,6 @@ jobs:
           python-version: ${{ matrix.python }}
 
       - name: install package
-        run: pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ --pre numpy-cython-example[test]
+        run: pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ --pre ${{ matrix.pip-option }} numpy-cython-example[test]
 
       - run: pytest
