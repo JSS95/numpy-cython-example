@@ -78,3 +78,26 @@ jobs:
         run: |
           pip install twine
           twine upload --repository testpypi dist/* -u __token__ -p ${{ secrets.testpypi_token }}
+
+  test_published:
+    name: Test published package
+    needs: publish
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os : [ubuntu-latest, windows-latest, macos-latest]
+        python: ["3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python }}
+
+      - name: install package
+        run: pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ --pre numpy-cython-example[test]
+
+      - run: pytest
