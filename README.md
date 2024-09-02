@@ -20,6 +20,9 @@ This example covers:
 
 You can either download the pre-built binaries for your platform from PyPI, or get the source and build the binaries yourself.
 
+Building binaries from `.pyx` files requires Cython to be installable in your machine.
+Once it is satisfied, building can be automated thanks to `setuptools`.
+
 ### Installing from PyPI
 
 The simplest option. Your platform is detected and binary wheel is installed from PyPI. Just run this and forget about the rest.
@@ -28,10 +31,7 @@ The simplest option. Your platform is detected and binary wheel is installed fro
 pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ numpy-cython-example
 ```
 
-### Building from source
-
-Building binaries from `.pyx` files requires Cython to be installable in your machine.
-Once it is satisfied, building can be automated thanks to `setuptools`.
+### Building from PyPI
 
 You can get source from PyPI by disabling binary installation.
 This will download the source and automatically build the binary.
@@ -39,6 +39,8 @@ This will download the source and automatically build the binary.
 ```
 pip install --index-url https://test.pypi.org/simple/ --extra-index-url https://pypi.org/simple/ --no-binary=numpy-cython-example numpy-cython-example
 ```
+
+### Building from Source
 
 If you have already acquired the souce code (e.g., from Github), running this in your local project root directory will do the same job.
 
