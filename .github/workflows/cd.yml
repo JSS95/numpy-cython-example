@@ -34,7 +34,7 @@ jobs:
       - uses: actions/checkout@v4
 
       - name: Build sdist
-        run: |
+        run: |  # currently, default setuptools is older version and raises error.
           pip install --upgrade setuptools
           pip install numpy cython
           python setup.py sdist

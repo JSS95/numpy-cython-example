@@ -21,6 +21,7 @@ test = [
 ]
 
 [tool.cibuildwheel]
+# scipy skips these wheels
 skip = "cp36-* cp37-* cp38-* pp* *_ppc64le *_i686 *_s390x"
 test-extras = ["test"]
 test-command = "pytest {package}"
