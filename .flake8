@@ -1,0 +1,5 @@
+[flake8]
+# compatibility with black
+max-line-length = 88
+extend-ignore =
+    E203,

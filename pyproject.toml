@@ -19,6 +19,12 @@ dependencies = [
 test = [
     "pytest",
 ]
+dev = [
+    "flake8",
+    "black",
+    "isort",
+    "numpy-cython-example[test]",
+]
 
 [tool.cibuildwheel]
 # scipy skips these wheels

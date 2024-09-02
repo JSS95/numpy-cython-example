@@ -1,0 +1,38 @@
+name: lint
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+
+jobs:
+
+  lint:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: get repo
+        uses: actions/checkout@v3
+
+      - name: set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
+
+      - name: install dependencies
+        run: |
+          pip install flake8 black isort
+
+      - name: lint with flake8
+        run: |
+          flake8
+
+      - name: lint with black
+        run: |
+          black --check .
+
+      - name: lint with isort
+        run: |
+          isort --check .
