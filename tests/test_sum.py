@@ -1,4 +1,4 @@
-from numpy_cython_sum import sum_array
+from numpy_cython_example import sum_array
 import numpy as np
 
 
