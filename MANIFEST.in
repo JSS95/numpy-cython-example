@@ -1,2 +1,2 @@
-include *.pyx
-exclude *.c
+include src/numpy_cython_example/*.pyx
+exclude src/numpy_cython_example/*.c
