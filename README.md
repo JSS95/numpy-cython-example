@@ -4,6 +4,7 @@ An ultimate guide for writing a Numpy-oriented Cython package and pubilshing to 
 
 This example covers:
 
+* src-layout with Cython.
 * Using Cython to write functions operating on Numpy.
 * Setting up CI to automate unit testing.
 * Using `setup.py` as a build script with `setuptools`, while keeping package metadata in `pyproject.toml`.
