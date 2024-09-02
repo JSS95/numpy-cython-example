@@ -7,7 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Unreleased
 
-- src-layout.
+- Changed package structure to src-layout.
 
 ## [1.0.0] - 2024-09-02
 
