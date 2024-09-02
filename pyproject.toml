@@ -15,6 +15,10 @@ dependencies = [
   "numpy",
 ]
 
+[project.urls]
+homepage = "https://github.com/JSS95/numpy-cython-example"
+source = "https://github.com/JSS95/numpy-cython-example"
+
 [project.optional-dependencies]
 test = [
     "pytest",
