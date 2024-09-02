@@ -6,12 +6,10 @@ This example covers:
 
 * src-layout with Cython.
 * Using Cython to write functions operating on Numpy.
-* Setting up CI to automate unit testing.
+* CI for automated unit testing.
 * Using `setup.py` as a build script with `setuptools`, while keeping package metadata in `pyproject.toml`.
-* Using `setuptools` to generate source distribution.
 * Using `cibuildwheel` to generate pre-built distributions for different platforms.
 * Publishing the distribution to PyPI using `twine` in Github Action.
-* Installing or building the distributed package.
 
 ... and many more details!
 
