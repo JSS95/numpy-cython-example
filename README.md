@@ -5,9 +5,7 @@ An ultimate guide for writing a Numpy-oriented Cython package and pubilshing to 
 This example covers:
 
 * src-layout with Cython.
-* Using Cython to write functions operating on Numpy.
 * CI for automated unit testing.
-* Using `setup.py` as a build script with `setuptools`, while keeping package metadata in `pyproject.toml`.
 * Using `cibuildwheel` to generate pre-built distributions for different platforms.
 * Publishing the distribution to PyPI using `twine` in Github Action.
 
@@ -19,7 +17,9 @@ This example covers:
 
 You can either download the pre-built binaries for your platform from PyPI, or get the source and build the binaries yourself.
 
-Building binaries from `.pyx` files requires Cython to be installable in your machine.
+> (Note) Binaries for MacOS are not distributed because I just couldn't make OpenMP work in CI.
+
+Building binaries from `.pyx` files requires Cython's prerequisits and OpenMP installed in your machine.
 Once it is satisfied, building can be automated thanks to `setuptools`.
 
 ### Installing from PyPI
