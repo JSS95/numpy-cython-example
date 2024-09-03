@@ -1,3 +1,4 @@
+"""Parallalization example using array summation."""
 cimport cython
 cimport numpy as cnp
 from cython.parallel cimport prange
