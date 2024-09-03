@@ -1,9 +1,21 @@
+import sys
+
 import numpy
 from Cython.Build import cythonize
 from setuptools import Extension, setup
 
+if sys.platform.startswith("win"):
+    compile_args = ["/openmp"]
+else:
+    compile_args = ["-fopenmp"]
+
 extensions = [
-    Extension("numpy_cython_example.sum", ["src/numpy_cython_example/sum.pyx"]),
+    Extension(
+        "numpy_cython_example.sum",
+        ["src/numpy_cython_example/sum.pyx"],
+        extra_compile_args=compile_args,
+        extra_link_args=compile_args,
+    ),
 ]
 
 setup(
