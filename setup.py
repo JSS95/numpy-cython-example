@@ -16,6 +16,12 @@ extensions = [
         extra_compile_args=compile_args,
         extra_link_args=compile_args,
     ),
+    Extension(
+        "numpy_cython_example.dfd",
+        ["src/numpy_cython_example/dfd.pyx"],
+        extra_compile_args=compile_args,
+        extra_link_args=compile_args,
+    ),
 ]
 
 setup(
