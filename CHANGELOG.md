@@ -8,8 +8,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.1.0] - 2024-09-04
 
 - Changed package structure to src-layout.
-- Added parallelization example (`sum_array_parallel()`).
-- Add C-array example (`dfd()`).
+- Added parallelization example (`sum.pyx`).
+- Add C-array example (`dfd.pyx`).
 - Dropped MacOS support.
 
 ## [1.0.0] - 2024-09-02
