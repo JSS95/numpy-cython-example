@@ -1,14 +1,15 @@
-"""C-array example using discrete Frechet distance."""
+"""Multidimensional C-array example using discrete Frechet distance."""
+import numpy as np
 cimport cython
 from libc.math cimport sqrt
-from libc.stdlib cimport free, malloc
 
 
 @cython.boundscheck(False)
 @cython.wraparound(False)
 cdef double norm(double[:] p, double[:] q):
-    cdef int i
-    cdef double elem_diff, sum = 0.0
+    cdef Py_ssize_t i
+    cdef double sum = 0.0
+
     for i in range(p.shape[0]):
         elem_diff = p[i] - q[i]
         sum += elem_diff * elem_diff
@@ -20,22 +21,20 @@ cdef double norm(double[:] p, double[:] q):
 cpdef double dfd(double[:, :] P, double[:, :] Q):
     cdef Py_ssize_t i, j
     cdef int p = P.shape[0], q = Q.shape[0]
-    cdef double* ca = <double*>malloc(q * sizeof(double))
-    cdef double ret
+    cdef double[:, :] ca = np.empty((p, q), dtype=np.float64)
 
-    ca[0] = norm(P[0], Q[0])
-
-    for j in range(1, q):
-        ca[j] = max(ca[j - 1], norm(P[0], Q[j]))
+    ca[0, 0] = norm(P[0], Q[0])
 
     for i in range(1, p):
-        left = ca[0]
-        ca[0] = max(left, norm(P[0], Q[0]))
-        for j in range(1, q):
-            diag = left
-            left = ca[j]
-            ca[j] = max(min(diag, left, ca[j - 1]), norm(P[i], Q[j]))
+        ca[i, 0] = norm(P[i], Q[0])
 
-    ret = ca[q - 1]
-    free(ca)
-    return ret
+    for j in range(1, q):
+        ca[0, j] = norm(P[0], Q[j])
+
+    for i in range(1, p):
+        for j in range(1, q):
+            ca[i, j] = max(
+                min(ca[i - 1, j - 1], ca[i - 1, j], ca[i, j - 1]), norm(P[i], Q[j])
+            )
+
+    return ca[p - 1, q - 1]
