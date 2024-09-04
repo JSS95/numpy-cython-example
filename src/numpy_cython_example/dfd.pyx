@@ -1,4 +1,4 @@
-"""Multidimensional C-array example using discrete Frechet distance."""
+"""2D array example using discrete Frechet distance."""
 import numpy as np
 cimport cython
 from libc.math cimport sqrt
