@@ -5,9 +5,8 @@ An ultimate guide for writing a Numpy-oriented Cython package and pubilshing to 
 This example covers:
 
 * src-layout with Cython.
-* CI for automated unit testing.
 * Using `cibuildwheel` to generate pre-built distributions for different platforms.
-* Publishing the distribution to PyPI using `twine` in Github Action.
+* Publishing the distribution to PyPI using Github Action.
 
 ... and many more details!
 
