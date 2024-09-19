@@ -26,10 +26,10 @@ cpdef double dfd(double[:, :] P, double[:, :] Q):
     ca[0, 0] = norm(P[0], Q[0])
 
     for i in range(1, p):
-        ca[i, 0] = norm(P[i], Q[0])
+        ca[i, 0] = max(norm(P[i], Q[0]), ca[i - 1, 0])
 
     for j in range(1, q):
-        ca[0, j] = norm(P[0], Q[j])
+        ca[0, j] = max(norm(P[0], Q[j]), ca[0, j - 1])
 
     for i in range(1, p):
         for j in range(1, q):
